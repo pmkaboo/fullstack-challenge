@@ -6,6 +6,7 @@ export default class Cover extends Component {
     constructor(props) {
       super(props);
       this.state = { image_size: this.imageSize(window.innerWidth), mouseOver: false }
+      console.log('construct')
     }
 
     static propTypes = {
@@ -16,6 +17,12 @@ export default class Cover extends Component {
 
     handleResize() {
       this.setState({ image_size: this.imageSize(window.innerWidth) });
+    }
+
+    handleClick() {
+      alert('cluick')
+      console.log('click')
+      console.log(this)
     }
 
     componentDidMount() {
@@ -31,6 +38,7 @@ export default class Cover extends Component {
     }
 
     showDetails(show) {
+      console.log('hover')
       this.setState({ mouseOver: show })
     }
 
@@ -48,6 +56,7 @@ export default class Cover extends Component {
     }
 
     renderDetail() {
+      console.log('render detaul')
       if (!this.state.mouseOver) { return null; }
 
       return (
@@ -58,8 +67,8 @@ export default class Cover extends Component {
               { this.props.comicData.title }
             </div>
             <div>
-              <span className="cover-issue"># { this.props.comicData.issueNumber }</span>
-              <span className="cover-year">{ this.coverDate.call(this) }</span>
+              <span className="cover-issue"># { 123 }</span>
+              <span className="cover-year">{ 1 }</span>
             </div>
           </div>
         </div>
@@ -76,7 +85,7 @@ export default class Cover extends Component {
           onMouseEnter={ this.showDetails.bind(this, true) }
           onMouseLeave={ this.showDetails.bind(this, false) }>
           <div className="cover">
-            <img className="cover-image" alt={ this.props.comicData.title } src={ this.coverImage.call(this) } />
+            <img className="cover-image" alt={ this.props.comicData.title } src={ this.coverImage.call(this) } onClick={this.handleClick}/>
             { this.renderDetail() }
             { this.coverUpvoted() }
           </div>

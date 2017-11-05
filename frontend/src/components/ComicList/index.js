@@ -57,7 +57,7 @@ class ComicList extends Component {
     const results = this.props.comics;
     return results.map((comic) => {
       return (
-        <Cover
+        <Cover 
           key={comic.id}
           upVote={ this.upvote.bind(this, comic.id) }
           upVoted={ this.checkUpvoted.call(this, comic.id) }
