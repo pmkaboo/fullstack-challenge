@@ -14,5 +14,13 @@ RSpec.describe FetchComics do
 
       expect(comic_votes.votes).not_to be_nil
     end
+
+    it 'saves ComicVote' do
+      votes_before = ComicVote.find_by(comic_id: 123).votes
+      UpVote.perform(123)
+      votes_after = ComicVote.find_by(comic_id: 123).reload.votes
+
+      expect(votes_before).to eq(votes_after - 1)
+    end
   end
 end
