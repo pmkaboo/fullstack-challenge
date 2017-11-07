@@ -48,8 +48,8 @@ export default class Cover extends Component {
         </div>)
     }
 
-    openComicModal() {
-      this.setState({showComicModal: true});
+    openComicModal(e) {
+      if (e.target.className != 'cover-heart') this.setState({showComicModal: true});
     }
 
     closeComicModal() {
@@ -84,9 +84,10 @@ export default class Cover extends Component {
         <div className="pure-u-23-24 pure-u-md-1-4 pure-u-lg-1-5"
           onMouseEnter={ this.showDetails.bind(this, true) }
           onMouseLeave={ this.showDetails.bind(this, false) }
-          onClick={ this.openComicModal.bind(this) }>
+           onClick={ (e) => this.openComicModal(e) }
+           >
           <div className="cover">
-            <img className="cover-image" alt={ this.props.comicData.title } src={ this.coverImage.call(this) } onClick={this.handleClick}/>
+            <img className="cover-image" alt={ this.props.comicData.title } src={ this.coverImage.call(this) } />
             { this.renderDetail() }
             { this.coverUpvoted() }
           </div>
