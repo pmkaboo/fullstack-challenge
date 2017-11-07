@@ -17,7 +17,7 @@ class UpVote
     comic = ComicVote.upvote(comic_id: comic_id)
     comic.save
     comic.tap do |comic|
-      errors.add(:base, 'Vote failed to save') unless comic.new_record?
+      errors.add(:base, 'Vote failed to save') if comic.new_record?
     end
   end
 end
