@@ -54,8 +54,9 @@
   },
   "dependencies": {
     "axios": "^0.14.0",
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
+    "react": "^15.6.2",
+    "react-bootstrap": "^0.31.5",
+    "react-dom": "^15.6.2",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"

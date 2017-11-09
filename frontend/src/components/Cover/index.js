@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './Cover.css';
 import _ from 'lodash';
+import ComicModal from '../ComicModal/index.js'
 
 export default class Cover extends Component {
     constructor(props) {
       super(props);
-      this.state = { image_size: this.imageSize(window.innerWidth), mouseOver: false }
+      this.state = { image_size: this.imageSize(window.innerWidth), mouseOver: false, showComicModal: false }
     }
 
     static propTypes = {
@@ -47,6 +48,14 @@ export default class Cover extends Component {
         </div>)
     }
 
+    openComicModal(e) {
+      if (e.target.className != 'cover-heart') this.setState({showComicModal: true});
+    }
+
+    closeComicModal() {
+      this.setState({showComicModal: false});
+    }
+
     renderDetail() {
       if (!this.state.mouseOver) { return null; }
 
@@ -74,12 +83,19 @@ export default class Cover extends Component {
       return (
         <div className="pure-u-23-24 pure-u-md-1-4 pure-u-lg-1-5"
           onMouseEnter={ this.showDetails.bind(this, true) }
-          onMouseLeave={ this.showDetails.bind(this, false) }>
+          onMouseLeave={ this.showDetails.bind(this, false) }
+           onClick={ (e) => this.openComicModal(e) }
+           >
           <div className="cover">
             <img className="cover-image" alt={ this.props.comicData.title } src={ this.coverImage.call(this) } />
             { this.renderDetail() }
             { this.coverUpvoted() }
           </div>
+          <ComicModal
+            data = { this.props.comicData }
+            show = { this.state.showComicModal }
+            close = { this.closeComicModal.bind(this) }
+          />
         </div>
       );
     }

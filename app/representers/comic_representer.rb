@@ -6,4 +6,10 @@ module ComicRepresenter
   property :dates
   property :thumbnail
   property :issueNumber
+  property :variantDescription
+  property :isbn
+  property :characters
+  collection :images
+  property :creators
+
 end
